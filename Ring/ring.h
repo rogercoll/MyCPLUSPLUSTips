@@ -51,14 +51,38 @@ public:
       throw MyException();
     }
   }
+  iterator begin(){
+    return iterator(0,*this);
+  }
+  iterator end(){
+    return iterator(m_size,*this);
+  }
 };
 
 
 template<class T>
 class ring<T>::iterator{
+private:
+  int m_pos;
+  ring &m_ring;
 public:
-  void print(){
-    cout<<"Hello from iterator"<<endl;
+  iterator(int pos,ring &aux): m_pos(pos),m_ring(aux){
+  }
+
+  iterator &operator++(int){
+    m_pos++;
+    return *this;
+  }
+  iterator &operator++(){
+    m_pos++;
+    return *this;
+  }
+
+  T &operator*(){
+    return m_ring.get(m_pos);
+  }
+  bool operator!=(const iterator &other)const{
+    return m_pos != other.m_pos;
   }
 };
 

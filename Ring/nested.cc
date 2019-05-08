@@ -16,7 +16,19 @@ int main(){
     cout << myring.get(i) <<endl;
   }
 
+  cout<<endl;
+
   cout<<myring[1]<<endl;
 
+  cout<<endl;
+  //C++98 style
+  for(ring<string>::iterator it = myring.begin(); it != myring.end(); it++){
+    cout<<*it<<endl;
+  }
+  cout<<endl;
+  //C++11 style
+  for(auto value:myring){
+    cout<<value<<endl;
+  }
   return 0;
 }
